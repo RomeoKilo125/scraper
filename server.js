@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({
 
 // app.use(express.static(`public`))
 
+mongoose.connect(`mongodb://localhost/mongoHeadlines`)
+
 app.get(`/`, (req, res) => {
   axios.get(`https://www.nytimes.com/`).then(results => {
 
@@ -43,7 +45,11 @@ app.get(`/`, (req, res) => {
         link: link
       }
 
-      headline !== `` && link !== `` ? resultArray.push(story) : ``
+      if (headline !== `` && link !== ``) {
+        db.Article.create(story)
+        .then( dbArticle => console.log(dbArticle))
+        .catch(err => res.json(err))
+      }
     })
 
     // console.log(resultArray)
