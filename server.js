@@ -1,35 +1,53 @@
-let express = require('express')
-let bodyParser = require('body-parser')
-let logger = require('morgan')
-let mongoose = require('mongoose')
-let cheerio = require('cheerio')
-let request = require('request')
-let axios = require('axios')
+let express = require(`express`)
+let bodyParser = require(`body-parser`)
+let logger = require(`morgan`)
+let mongoose = require(`mongoose`)
+let cheerio = require(`cheerio`)
+let request = require(`request`)
+let axios = require(`axios`)
 
 let app = express()
 
+let db = require(`./models`)
+
 const PORT = process.env.PORT || 3000
 
-app.use(logger('dev'))
+app.use(logger(`dev`))
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
-app.get('/', (req, res) => {
-  axios.get('https://www.nytimes.com/').then(results => {
+// app.use(express.static(`public`))
+
+app.get(`/`, (req, res) => {
+  axios.get(`https://www.nytimes.com/`).then(results => {
 
     let $ = cheerio.load(results.data)
 
-    $('article.story').each((i,elt) => {
+    let resultArray = []
 
-      let headline = $(elt).children('h2 a').text()
-      // let summary = $(elt p.summary).text()
-      // let link = $(elt).children().attr()
+    $(`article.story`).each((i, elt) => {
 
-      console.log(headline);
+      let headline = $(elt).children(`h2.story-heading`).text().trim()
+      let byline = $(elt).children(`p.byline`).text().trim()
+      let summary = $(elt).children().text().trim()
+      let link = $(elt).children(`h2.story-heading`).children(`a`).attr(`href`)
 
+      summary = summary.replace(headline, ``).replace(byline, ``).trim()
+
+      let story = {
+        headline: headline,
+        byline: byline,
+        summary: summary,
+        link: link
+      }
+
+      headline !== `` && link !== `` ? resultArray.push(story) : ``
     })
 
-    res.send('scrape complete')
+    // console.log(resultArray)
+    res.json(resultArray)
 
   })
 })
