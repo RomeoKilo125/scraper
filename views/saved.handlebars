@@ -1,0 +1,14 @@
+<h1>Saved Articles</h1>
+<button id='btnViewAll'>View All Articles</button>
+<button id="btnScrape">Scrape</button>
+{{#each articles}}
+    <div class="article">
+      <a href= {{this.link}}>
+        {{this.headline}}<br />
+        {{this.byline}}<br />
+        {{this.summary}}<br />
+      </a>
+      <button class='btnUnSave' data-id="{{this._id}}">UnSave Article</button>
+      <button class='btnComment' data-id="{{this._id}}">View Article Comments</button>
+    </div>
+{{/each}}
