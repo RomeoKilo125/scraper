@@ -2,18 +2,12 @@ $(document).ready(() => {
 
   $(`#btnViewSaved`).on(`click`, event => {
     event.preventDefault()
-    $.ajax({
-      method: `GET`,
-      url: `/saved`
-    })
+    location.href= `/saved`
   })
 
   $(`#btnViewAll`).on(`click`, event => {
     event.preventDefault()
-    $.ajax({
-      method: `GET`,
-      url: `/index`
-    })
+    location.href = `/`
   })
 
   $(`#btnScrape`).on('click', event => {

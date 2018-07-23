@@ -29,9 +29,11 @@ router.get(`/saved`, (req, res) => {
   db.Article.find({
     saved: true
   }).then(articles => {
-    res.render(`saved`, {
+
+    articles[0] ? res.render(`saved`, {
       articles
-    })
+    }) : res.redirect(`/`)
+
   }).catch(err => {
     res.json(err)
   })

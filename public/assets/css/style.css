@@ -1,0 +1,13 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #aaa;
+}
+
+.article {
+  background-color: #eee;
+  padding: 6px;
+  margin: 12px 6px;
+}
