@@ -6,6 +6,10 @@ body {
   background-color: #aaa;
 }
 
+button {
+  margin-top: 6px;
+}
+
 .article {
   background-color: #eee;
   padding: 6px;
