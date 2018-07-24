@@ -12,6 +12,7 @@ router.get(`/index`, (req, res) => {
 
 router.get(`/`, (req, res) => {
   db.Article.find({})
+    .populate(`comments`)
     .then(articles => {
 
       articles[0] ? res.render(`index`, {
