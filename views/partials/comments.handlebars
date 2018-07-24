@@ -8,11 +8,14 @@
         {{this.summary}}<br />
       </a>
     </p>
-    {{#each this.comments}}
-      <p>
-        {{this.content}}
-      </p>
-    {{/each}}
+    <ul id= "{{this._id}}-commentsList">
+      {{#each this.comments}}
+        <li class='p-6'>
+          {{this.content}}
+        </li>
+      {{/each}}
+
+    </ul>
     <form class="commentForm">
       <textarea name="commentText" rows="8" cols="80" id="newComment-{{this._id}}"></textarea><br />
       <button class="btnAddComment" data-id={{this._id}}>Add Comment</button>

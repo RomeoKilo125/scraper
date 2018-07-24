@@ -65,6 +65,9 @@ $(document).ready(() => {
       data: {
         text: commentText
       }
+    }).then(() => {
+      $(`#newComment-${articleId}`).val('')
+      $(`#${articleId}-commentsList`).append(`<li class="p-6">${commentText}</li>`)
     })
   })
 
