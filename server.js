@@ -8,7 +8,7 @@ let exphbs = require(`express-handlebars`)
 let app = express()
 
 const PORT = process.env.PORT || 3000
-
+const MONGODB_URI = process.env.MONGODB_URI || `mongodb://localhost/mongoHeadlines`
 app.use(logger(`dev`))
 
 app.use(bodyParser.json())
@@ -19,7 +19,7 @@ app.set(`view engine`, `handlebars`)
 
 app.use(express.static(`public`))
 
-mongoose.connect(`mongodb://localhost/mongoHeadlines`)
+mongoose.connect(MONGODB_URI)
 
 let routes = require(`./routes/routes.js`)
 
