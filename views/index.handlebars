@@ -2,18 +2,5 @@
 <button id='btnViewSaved'>View Saved Articles</button>
 <button id="btnScrape">Scrape</button>
 {{#each articles}}
-  <div class="article">
-    <a href= {{this.link}}>
-        {{this.headline}}<br />
-        {{this.byline}}<br />
-        {{this.summary}}<br />
-      </a>
-    {{#unless this.saved}}
-      <button class='btnSave' data-id="{{this._id}}">Save Article</button>
-    {{/unless}}
-    {{#if this.saved}}
-      <button class='btnUnSave' data-id="{{this._id}}">UnSave Article</button>
-    {{/if}}
-    <button class='btnComment' data-id="{{this._id}}">View/Add Article Comments</button>
-  </div>
+{{> article}}
 {{/each}}
