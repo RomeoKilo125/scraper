@@ -1,0 +1,21 @@
+<div class="modal" id= "{{this._id}}-comments">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>
+      <a href= {{this.link}}>
+        {{this.headline}}<br />
+        {{this.byline}}<br />
+        {{this.summary}}<br />
+      </a>
+    </p>
+    {{#each this.comments}}
+      <p>
+        {{this.content}}
+      </p>
+    {{/each}}
+    <form class="commentForm">
+      <textarea name="commentText" rows="8" cols="80" id="newComment-{{this._id}}"></textarea><br />
+      <button class="btnAddComment" data-id={{this._id}}>Add Comment</button>
+    </form>
+  </div>
+</div>

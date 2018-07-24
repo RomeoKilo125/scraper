@@ -38,5 +38,21 @@ $(document).ready(() => {
     }).catch(err => console.log(err))
   })
 
+  $(`.btnComment`).on(`click`, function(event) {
+    event.preventDefault()
+    let articleID = $(this).data(`id`)
+    let modal = $(`#${articleID}-comments`)
+    modal.css(`display`, `block`)
+  })
+
+  $(`.close`).on(`click`, () => {
+    $(`.modal`).css(`display`, `none`)
+  })
+
+  $(window).on(`click`, function(event) {
+    if (event.target.className == `modal`) {
+      $(`.modal`).css(`display`, `none`)
+    }
+  })
 
 })
