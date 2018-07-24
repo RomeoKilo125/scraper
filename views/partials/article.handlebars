@@ -1,8 +1,8 @@
 <div class="article">
   <a href= {{this.link}}>
-      {{this.headline}}<br />
-      {{this.byline}}<br />
-      {{this.summary}}<br />
+    <p class="p-6">{{this.headline}}</p>
+    <p class="p-6">{{this.byline}}</p>
+    <p class="p-6">{{this.summary}}</p>
     </a>
   {{#unless this.saved}}
     <button class='btnSave' data-id="{{this._id}}">Save Article</button>
@@ -10,5 +10,5 @@
   {{#if this.saved}}
     <button class='btnUnSave' data-id="{{this._id}}">UnSave Article</button>
   {{/if}}
-  <button class='btnComment' data-id="{{this._id}}">View Article Comments</button> {{> comment}}
+  <button class='btnComment' data-id="{{this._id}}">View Article Comments</button> {{> comments}}
 </div>
