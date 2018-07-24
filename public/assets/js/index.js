@@ -2,7 +2,7 @@ $(document).ready(() => {
 
   $(`#btnViewSaved`).on(`click`, event => {
     event.preventDefault()
-    location.href= `/saved`
+    location.href = `/saved`
   })
 
   $(`#btnViewAll`).on(`click`, event => {
@@ -53,6 +53,19 @@ $(document).ready(() => {
     if (event.target.className == `modal`) {
       $(`.modal`).css(`display`, `none`)
     }
+  })
+
+  $(`.btnAddComment`).on(`click`, function(event) {
+    event.preventDefault()
+    let articleId = $(this).data(`id`)
+    let commentText = $(`#newComment-${articleId}`).val()
+    $.ajax({
+      method: `POST`,
+      url: `/comment/add/${articleId}`,
+      data: {
+        text: commentText
+      }
+    })
   })
 
 })

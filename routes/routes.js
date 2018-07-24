@@ -104,5 +104,21 @@ router.put(`/article/unsave/:id`, (req, res) => {
       res.json(err))
 })
 
+router.post(`/comment/add/:articleId`, (req, res) => {
+  db.Comment.create({
+    content: req.body.text
+  }).then(comment => {
+    return db.Article.findOneAndUpdate({}, {
+      $push: {
+        comments: comment._id
+      }
+    }, {
+      new: true
+    })
+  }).then(dbArticle => {
+    res.json(dbArticle)
+  }).catch(err => res.json(err))
+  res.send(`comment submitted`)
+})
 
 module.exports = router
